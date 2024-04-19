@@ -1,18 +1,17 @@
 import { Router } from "express";
 import Author from "../models/author.model.js";
 
-// Creazione ed esportazione del Router
-export const apiRoute = Router();
+export const authorsRoute = Router();
 
 // Richiesta GET all'indirizzo "/"
-apiRoute.get("/", async (req, res) => {
+authorsRoute.get("/", async (req, res) => {
     let authors = await Author.find({});
     //Risposta dell'API al Route "/"
     res.send(authors);
 })
 
 // Richiesta GET all'indirizzo "/:id" (Esempio: http:localhost:3001/api/affsfsasdf84594j)
-apiRoute.get("/:id", async (req, res, next) => {
+authorsRoute.get("/:id", async (req, res, next) => {
     try {
         //Inizializziamo una variabile author con l'id uguale a quello passato come parametro
         let author = await Author.findById(req.params.id);
@@ -24,7 +23,7 @@ apiRoute.get("/:id", async (req, res, next) => {
 })
 
 // Richiesta POST all'indirizzo "/" (Esempio: http:localhost:3001/api)
-apiRoute.post("/", async (req, res, next) => {
+authorsRoute.post("/", async (req, res, next) => {
     try {
         //Inizializziamo una variabile author con il body inviato dalla richiesta
         let author = await Author.create(req.body);
@@ -36,7 +35,7 @@ apiRoute.post("/", async (req, res, next) => {
 })
 
 // Richiesta PUT all'indirizzo "/:id" (Esempio: http:localhost:3001/api/affsfsasdf84594j)
-apiRoute.put("/:id", async (req, res, next) => {
+authorsRoute.put("/:id", async (req, res, next) => {
     try {
         //Inizializziamo una variabile author con il body inviato dalla richiesta
         let author = await Author.findByIdAndUpdate(req.params.id, req.body, {
@@ -50,7 +49,7 @@ apiRoute.put("/:id", async (req, res, next) => {
 })
 
 // Richiesta DELETE all'indirizzo "/:id" (Esempio: http:localhost:3001/api/affsfsasdf84594j)
-apiRoute.delete("/:id", async (req, res, next) => {
+authorsRoute.delete("/:id", async (req, res, next) => {
     try {
         await Author.deleteOne({
             _id: req.params.id,

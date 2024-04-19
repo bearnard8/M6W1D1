@@ -1,7 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import { config } from "dotenv";
-import { apiRoute } from "./routes/api.route.js";
+import { authorsRoute } from "./routes/authors.route.js";
+import { blogPostsRoute } from "./routes/blogPost.route.js";
 
 // Inizializzazione del file .env
 config();
@@ -16,7 +17,8 @@ app.use(express.json());
 
 //Importa routes
 // http/localhost:3001/api
-app.use("/api", apiRoute);
+app.use("/api/authors", authorsRoute);
+app.use("/api/blogPosts", blogPostsRoute);
 
 // Funzione per inizializzare il server
 const initServer = async () => {

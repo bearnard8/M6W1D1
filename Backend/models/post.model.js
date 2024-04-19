@@ -14,7 +14,6 @@ author: {
     avatar // immagine dell'autore
 },
 content: //HTML dell'articolo
-}
 */
 
 const postSchema = new Schema(
