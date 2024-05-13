@@ -1,8 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 import { config } from "dotenv";
-import { authorsRoute } from "./routes/authors.route.js";
-import { blogPostsRoute } from "./routes/blogPost.route.js";
+import { authorsRoute } from "./services/routes/authors.route.js";
+import { blogPostsRoute } from "./services/routes/blogPost.route.js";
+import {
+    badRequestHandler,
+    genericErrorHandler,
+    notFoundHandler,
+    unauthorizedHandler,
+} from "./services/middlewares/errorHandler.js"
 
 // Inizializzazione del file .env
 config();
@@ -14,11 +21,18 @@ const app = express();
 
 // Abilita l'utilizzo di file .json
 app.use(express.json());
+app.use(cors());
 
 //Importa routes
 // http/localhost:3001/api
 app.use("/api/authors", authorsRoute);
 app.use("/api/blogPosts", blogPostsRoute);
+
+// Middlewares per la gestione degli errori
+app.use(badRequestHandler);
+app.use(unauthorizedHandler);
+app.use(notFoundHandler);
+app.use(genericErrorHandler);
 
 // Funzione per inizializzare il server
 const initServer = async () => {
@@ -36,10 +50,10 @@ const initServer = async () => {
     }
 }
 
-//INvochiamo la funzione per inizializzare il server
+//Invochiamo la funzione per inizializzare il server
 initServer();
 
-
+ 
 
 
 

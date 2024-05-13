@@ -11,7 +11,7 @@ const NewBlogPost = props => {
     
     setText(draftToHtml(value));
     console.log(text)
-    // console.log(convertToRaw(value.getCurrentContent()))
+    //console.log(convertToRaw(value.getCurrentContent()))
   });
   return (
     <Container className="new-blog-container">
