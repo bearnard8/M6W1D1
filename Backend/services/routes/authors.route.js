@@ -71,6 +71,6 @@ authorsRoute.patch("/:id/avatar", cloudinaryMiddleware, async (req, res, next) =
         );
         res.send(updatedAuthor)
     } catch(err) {
-        next(error);
+        next(err);
     }
 });

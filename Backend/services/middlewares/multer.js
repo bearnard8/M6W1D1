@@ -12,7 +12,7 @@ cloudinary.config({
 });
 
 const options = {
-    storage: new CloudinaryStorage ({
+    storage: new CloudinaryStorage({
         cloudinary,
         params: {
             folder: "avatars",
