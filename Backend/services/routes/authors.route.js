@@ -61,7 +61,7 @@ authorsRoute.delete("/:id", async (req, res, next) => {
     }
 })
 
-// Richiesta Parch all'indirizzo ":/id/avatar"
+// Richiesta Patch all'indirizzo ":/id/avatar"
 authorsRoute.patch("/:id/avatar", cloudinaryMiddleware, async (req, res, next) => {
     try {
         let updatedAuthor = await Author.findByIdAndUpdate(
